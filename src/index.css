@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    font-family: 'Manrope', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input{
+    border: 1px solid black;
 }
+
+body{
+    background-color: #FFC9AF;
+}
+
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 2100px;
+}
+
+/* ////////////////////////////// */
+/* welcome page */
+/* ///////////////////////////// */
+
+.welcome-cont{
+    width: 100%;
+    padding: 18px;
+    background-color: #FFC9AF;
+}
+
+@media screen and (max-width:640px){
+    .welcome-cont{padding: 10px;}
+}
+
+
+.welcome-cont-white{
+    height: auto;
+    min-height: calc(100vh - 36px);
+    padding-bottom: 20px !important;
+    @apply bg-white rounded-lg p-5 sm:p-8 md:p-28 flex flex-col justify-between gap-20 md:gap-36 lg:gap-10 lg:flex-row
+}
+
+.welcome-title{
+    @apply text-5xl md:text-7xl font-thin
+}
+
+.welcome-title2{
+    @apply text-5xl md:text-7xl text-center font-semibold text-oBut
+}
+
+.welcome-subtitle{
+    @apply text-xl sm:text-2xl md:text-3xl text-center sm:text-left pt-10 sm:pt-20
+}
+
+.form-container{
+    @apply flex-1 flex justify-center lg:justify-end
+}
+
+/* ////////////////////////////// */
+/* welcome page FINISH */
+/* ///////////////////////////// */
