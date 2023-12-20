@@ -2,6 +2,7 @@
   "name": "finance-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vas11a.github.io/financeapp/",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^2.0.1",
@@ -13,6 +14,7 @@
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
     "axios": "^1.6.2",
+    "gh-pages": "^6.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
@@ -25,7 +27,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [

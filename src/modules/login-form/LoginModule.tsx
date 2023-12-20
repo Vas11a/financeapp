@@ -12,7 +12,7 @@ import { useAppDispatch } from 'hooks';
 import { useNavigate, Link } from 'react-router-dom';
 import { isValidEmail } from 'helpers';
 
-function LoginModule({isLoginPage} : {isLoginPage?: boolean}): JSX.Element {
+function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
 
     const dispatch = useAppDispatch();
 
@@ -24,7 +24,7 @@ function LoginModule({isLoginPage} : {isLoginPage?: boolean}): JSX.Element {
     const [errorText, setErrorText] = React.useState<string>('Error login or password');
 
     const navigate = useNavigate();
-    
+
     const login = async () => {
         if (isValidEmail(emailLocal) === false) {
             setErrorText('Invalid email');
@@ -34,24 +34,23 @@ function LoginModule({isLoginPage} : {isLoginPage?: boolean}): JSX.Element {
         setIsLoading(true)
         setIsError(false)
         try {
-            const res = await axios.post(`${mainUrl}login` , {email: emailLocal, password: passwordLocal});
-            if (res.data === false) {
+            const res = await axios.post(`${mainUrl}login`, { email: emailLocal, password: passwordLocal });
+            dispatch(setUserData(res.data))
+            navigate('/user-pannel')
+            setEmailLocal('');
+            setPasswordLocal('');
+            setIsLoading(false);
+        } catch (error: any) {
+            if (error.response && error.response.status === 404) {
                 setErrorText('Error login or password');
-                console.log(res.data)
                 setIsError(true);
+                setIsLoading(false);
             } else {
-                console.log(res.data)
-                dispatch(setUserData(res.data))
-                navigate('/user-pannel')
-                setEmailLocal('');
-                setPasswordLocal('');
+                setErrorText('Server error');
+                setIsError(true);
+                setIsLoading(false);
             }
-            setIsLoading(false);
-        } catch (error) {
-            setErrorText('Server error');
-            setIsError(true);
-            console.log(error);
-            setIsLoading(false);
+
         }
     }
 
@@ -80,15 +79,15 @@ function LoginModule({isLoginPage} : {isLoginPage?: boolean}): JSX.Element {
             <Link to={'/reset-password'} className={s.forgotPass} >Forgot password?</Link>
             {
                 isLoading && (
-                    <div className={s.spinnerCont}><div className={s.spinner}><Spinner/></div></div>
+                    <div className={s.spinnerCont}><div className={s.spinner}><Spinner /></div></div>
                 )
             }
-            
+
             <FormBtn
                 name='Sing in'
                 fc={login}
             />
-            
+
             <div className={s.reg1}>New to Financary?  <Link to={'/registration'} className={s.reg2}> Create account</Link></div>
         </div>
     )

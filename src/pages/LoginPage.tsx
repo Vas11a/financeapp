@@ -5,7 +5,7 @@ function LoginPage(): JSX.Element {
     return (
         <div className='welcome-cont'>
             <div className='flex justify-center pt-4 sm:pt-16'>
-                    <LoginModule isLoginPage={true} />
+                <LoginModule isLoginPage={true} />
             </div>
         </div>
     )

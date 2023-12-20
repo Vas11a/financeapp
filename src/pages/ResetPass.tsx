@@ -17,12 +17,12 @@ function ResetPass(): JSX.Element {
   const confirm = async () => {
     setIsLoading(true)
     try {
-      await axios.post(`${mainUrl}changePass`);
-      setIsLoading(true)
-      navigate('/login');
+      await axios.post(`${mainUrl}savePassword`);
+      setIsLoading(false)
+      alert('Password changed');
     } catch (error) {
       alert('Server error');
-      setIsLoading(true)
+      setIsLoading(false)
     }
   }
 

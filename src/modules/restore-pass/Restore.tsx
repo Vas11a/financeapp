@@ -16,9 +16,9 @@ type RestoreModuleType = {
 
 function Restore({ setUserCode }: RestoreModuleType): JSX.Element {
 
-  const [emailLocal, setEmailLocal] = React.useState<string>('');
-  const [passwordLocal, setPasswordLocal] = React.useState<string>('');
-  const [repeatPassword,  setRepeatPassword] = React.useState<string>('');
+    const [emailLocal, setEmailLocal] = React.useState<string>('');
+    const [passwordLocal, setPasswordLocal] = React.useState<string>('');
+    const [repeatPassword, setRepeatPassword] = React.useState<string>('');
 
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isError, setIsError] = React.useState<boolean>(false);
@@ -38,21 +38,21 @@ function Restore({ setUserCode }: RestoreModuleType): JSX.Element {
         setIsLoading(true)
         setIsError(false)
         try {
-            const res = await axios.post(`${mainUrl}sendEmail`);
-            if (res.data === 'isNoExist') {
+            const res = await axios.post(`${mainUrl}changePassword`, { email: emailLocal, password: passwordLocal });
+            console.log(res.data)
+            setUserCode(res.data)
+            setIsLoading(false)
+        } catch (error: any) {
+            if (error.response && error.response.status === 404) {
                 setErrorText('You do not have an account');
                 setIsError(true);
                 setIsLoading(false)
             } else {
-                console.log(res.data)
-                setUserCode(res.data)
+                console.log(error)
+                setErrorText('Server error');
+                setIsError(true);
                 setIsLoading(false)
             }
-        } catch (error) {
-            console.log(error)
-            setErrorText('Server error');
-            setIsError(true);
-            setIsLoading(false)
         }
     }
 
@@ -64,7 +64,7 @@ function Restore({ setUserCode }: RestoreModuleType): JSX.Element {
                     <div className={s.error}>{errorText}</div>
                 )
             }
-            
+
             <FormInput
                 value={emailLocal}
                 changeValue={setEmailLocal}
