@@ -36,6 +36,7 @@ function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
         try {
             const res = await axios.post(`${mainUrl}login`, { email: emailLocal, password: passwordLocal });
             dispatch(setUserData(res.data))
+            console.log(res.data)
             navigate('/user-pannel')
             setEmailLocal('');
             setPasswordLocal('');

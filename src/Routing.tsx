@@ -4,12 +4,11 @@ import WelcomePage from 'pages/WelcomePage';
 import LoginPage from 'pages/LoginPage';
 import RegistrationPage from 'pages/RegistrationPage';
 import ResetPass from 'pages/ResetPass';
-import { useAppSelector } from 'hooks';
+import Error404 from 'pages/Error404';
+import UserPage from 'pages/UserPage';
+import RoomPage from 'pages/RoomPage';
 
 function Routing(): JSX.Element {
-
-  const  {username, email, password} = useAppSelector(state => state.profile)
-
 
   return (
     <div className='wrapper'>
@@ -18,8 +17,9 @@ function Routing(): JSX.Element {
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/registration' element={<RegistrationPage/>} />
         <Route path='/reset-password' element={<ResetPass/>} />
-        <Route path='/user-pannel' element={<div><div>{username}</div><div>{email}</div><div>{password}</div></div>} />
-        <Route path='*' element={<div>Error</div>} />
+        <Route path='/user-pannel' element={<UserPage/>} />
+        <Route path='/finance-pannel' element={<RoomPage/>} />
+        <Route path='*' element={<Error404/>} />
       </Routes>
     </div>
   )
