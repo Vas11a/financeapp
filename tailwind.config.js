@@ -14,7 +14,12 @@ module.exports = {
       },
       spacing: {
         form: '59.5px',
-      }
+        onepx: '1px',
+        switch: '42px'
+      },
+      borderWidth: {
+        calendar: '0.5px',
+      },
     },
   },
   plugins: [],

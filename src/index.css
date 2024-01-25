@@ -43,6 +43,8 @@ body{
     @apply bg-white rounded-lg p-5 sm:p-8 md:p-28 flex flex-col justify-between gap-20 md:gap-36 lg:gap-10 lg:flex-row
 }
 
+
+
 .welcome-title{
     @apply text-5xl md:text-7xl font-thin
 }
@@ -62,3 +64,42 @@ body{
 /* ////////////////////////////// */
 /* welcome page FINISH */
 /* ///////////////////////////// */
+
+
+/* //////////////////////////// */
+/* Uer page */
+/* //////////////////////////// */
+
+.user-cont-white{
+    height: auto;
+    min-height: calc(100vh - 36px);
+    padding-bottom: 20px !important;
+    padding-bottom: 70px !important;
+    @apply bg-white rounded-lg p-8 relative
+}
+
+.user-modules-cont{
+    @apply border-gray-300 mt-10 border-t-4 border-b-4
+}
+
+.user-name{
+    @apply text-4xl text-oBut font-bold
+}
+
+.user-modules{
+    @apply overflow-hidden p-7 
+}
+
+.user-error{
+    @apply text-center text-red-600 font-bold text-lg mt-5 -mb-5
+}
+
+.animation{
+    animation: change;
+    animation-duration: 1s;
+}
+
+
+/* //////////////////////////// */
+/* Uer page FINISH */
+/* //////////////////////////// */
