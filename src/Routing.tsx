@@ -6,7 +6,6 @@ import RegistrationPage from 'pages/RegistrationPage';
 import ResetPass from 'pages/ResetPass';
 import Error404 from 'pages/Error404';
 import UserPage from 'pages/UserPage';
-import RoomPage from 'pages/RoomPage';
 
 function Routing(): JSX.Element {
 
@@ -18,7 +17,6 @@ function Routing(): JSX.Element {
         <Route path='/registration' element={<RegistrationPage/>} />
         <Route path='/reset-password' element={<ResetPass/>} />
         <Route path='/user-pannel' element={<UserPage/>} />
-        <Route path='/finance-pannel' element={<RoomPage/>} />
         <Route path='*' element={<Error404/>} />
       </Routes>
     </div>

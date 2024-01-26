@@ -3,7 +3,7 @@ import Settings from 'modules/settings/Settings';
 import History from 'modules/history/History';
 import UserIncome from 'modules/user-income/UserIncome';
 import SwitchUserModules from 'modules/switch-user-modules/SwitchUserModules';
-import gh from 'assets/imgs/github.png'
+import gh from '@imgs/github.png'
 import Spinner from 'components/Spinner';
 import { useAppSelector } from 'hooks'
 import { useNavigate } from 'react-router-dom';
@@ -20,9 +20,6 @@ export default function UserPage(): JSX.Element {
   //         navigate('/')
   //     }
   // }, [])
-
-
-
 
   const [selectedModule, setSelectedModule] = React.useState<number>(1);
   const changeModule = (value: number) => {
@@ -57,7 +54,7 @@ export default function UserPage(): JSX.Element {
             </div>
           </div>
 
-          <div className=" absolute flex gap-5 bottom-3">
+          <div className=" absolute flex gap-5 bottom-3 gh ">
             <a href="https://github.com/Vas11a/financeapp" target='blanc'><img title='Frontend Part' className=' w-10 h-auto' src={gh} alt="gh-front" /></a>
             <a href="https://github.com/KOSTIAAANTYN/financeapp" target='blanc'><img title='Backend Part' className=' w-10 h-auto' src={gh} alt="gh-back" /></a>
           </div>

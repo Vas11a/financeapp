@@ -8,9 +8,14 @@ module.exports = {
       colors: {
         oBut: '#FF8442',
         oBg: '#FFC9AF',
+        calLight: '#FFE7DB'
       },
       maxWidth:{
-        form: '500px'
+        form: '500px',
+        claendar: '400px'
+      },
+      minWidth: {
+        calendar: '200px'
       },
       spacing: {
         form: '59.5px',

@@ -7,9 +7,6 @@ import Confirm from 'modules/confirm-mail/Confirm';
 
 function ResetPass(): JSX.Element {
 
-
-  
-
   const [userCode, setUserCode] = React.useState<string>('');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const navigate = useNavigate();
@@ -25,8 +22,6 @@ function ResetPass(): JSX.Element {
       setIsLoading(false)
     }
   }
-
-
 
   return (
     <div className='welcome-cont'>

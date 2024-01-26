@@ -15,9 +15,11 @@ interface CalendarItem {
 }
 
 
-const initialState: { calendar: CalendarItem[], globalTotal: number, weekTotal: number } = {
+
+const initialState: { calendar: CalendarItem[], globalTotal: number, weekTotal: number,isMonthly:boolean } = {
   globalTotal: 0,
   weekTotal: 0,
+  isMonthly: true,
   calendar: [
     { date: 22, fullData: '22.12.2023', total: 0, messages: [] },
     { date: 23, fullData: '23.12.2023', total: 0, messages: [] },
@@ -101,6 +103,9 @@ export const userPageSlice = createSlice({
         }
         state.globalTotal += elem.total
       })
+    },
+    setIsMonthly(state) {
+      state.isMonthly = !state.isMonthly
     }
 
   },
@@ -114,6 +119,7 @@ export const {
   changePriceR ,
   addOneMessageR,
   removeMessageR,
-  saveR} = userPageSlice.actions
+  saveR,
+  setIsMonthly} = userPageSlice.actions
 
 export default userPageSlice.reducer

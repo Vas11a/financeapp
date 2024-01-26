@@ -1,6 +1,6 @@
 import React from 'react';
 import FormBtn from 'components/FormBtn';
-import error from 'assets/imgs/error404.png';
+import error from '@imgs/error404.png';
 import { useNavigate } from 'react-router-dom';
 
 function Error404(): JSX.Element {

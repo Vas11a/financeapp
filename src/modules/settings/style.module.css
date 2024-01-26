@@ -1,5 +1,5 @@
 .button{
-    @apply flex justify-center rounded-xl text-white text-lg p-3  bg-oBut cursor-pointer duration-500
+    @apply flex justify-center rounded-xl text-white text-lg items-center px-2 h-11  bg-oBut cursor-pointer duration-500
 }
 
 .button:hover{
@@ -19,7 +19,7 @@
 }
 
 .buttonDelete{
-    @apply flex justify-center rounded-xl text-white text-lg p-3 bg-red-600 cursor-pointer duration-500
+    @apply flex justify-center rounded-xl text-white text-lg items-center px-2 h-11 bg-red-600 cursor-pointer duration-500
 }
 
 .buttonDelete:hover{
@@ -32,4 +32,8 @@
 
 .formInput{
     @apply p-2 border-black rounded-xl text-lg select-none
+}
+
+.buttonsBlock{
+    @apply flex justify-center flex-wrap gap-5 sm:gap-10
 }

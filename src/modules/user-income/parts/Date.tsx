@@ -1,15 +1,15 @@
 import React from 'react'
 import s from '../style.module.css'
-import arrow from '@/assets/imgs/arrow.png'
-import cross from '@/assets/imgs/cross.png'
-import add from '@/assets/imgs/add.png'
+import arrow from '@imgs/arrow.png'
+import cross from '@imgs/cross.png'
+import add from '@imgs/add.png'
 import { CalendarItem } from '../calendartypes'
 import { changeIsIncomeR, 
          changeDescriptionR, 
          changePriceR,
          addOneMessageR,
          removeMessageR,
-         saveR } from '../../../store/slices/userPageSlice'
+         saveR } from '@slices/userPageSlice'
 import { useAppDispatch } from 'hooks'
 type DateType = {
     activeDay: CalendarItem;
@@ -17,8 +17,6 @@ type DateType = {
 }
 
 export default function Date({ activeDay, activeIdx }: DateType): JSX.Element {
-    
-    
     const dispatch = useAppDispatch()
 
     const changeDescription = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
@@ -51,7 +49,7 @@ export default function Date({ activeDay, activeIdx }: DateType): JSX.Element {
             <div className={s.title} >{activeDay.fullData}</div>
             <div className="pt-7 flex flex-col justify-center gap-5">
                 {
-                    activeDay.messages.length === 0 && <div className='text-2xl text-gray-400 font-bold' >No incomes/expenses</div>
+                    activeDay.messages.length === 0 && <div className=' text-xl sm:text-2xl text-gray-400 font-bold' >No incomes/expenses</div>
                 }
                 {
                     activeDay.messages.map((elem, idx) => (

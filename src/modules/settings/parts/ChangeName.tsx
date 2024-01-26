@@ -2,16 +2,31 @@ import React from 'react'
 import s from '../style.module.css'
 
 type ChangeNameType = {
-    settingsForm: number
+    settingsForm: number;
+    changeUserName: (name: string) => void
 }
 
-export default function ChangeName({settingsForm}: ChangeNameType ):JSX.Element {
+export default function ChangeName({settingsForm, changeUserName}: ChangeNameType ):JSX.Element {
+
+  const [newName, setNewName] = React.useState<string>('')
+  const sendHandler = () => {
+    changeUserName(newName)
+    setNewName('')
+  }
+
   return (
-    <div className={` ${s.settingsForm}  ${settingsForm === 1 ? 'h-32 pb-10': 'h-0 pb-0' }`}>
+    <div className={` ${s.settingsForm}  ${settingsForm === 1 ? ' h-48 sm:h-32 pb-10': 'h-0 pb-0' }`}>
         <div className='text-2xl pb-3 font-bold'>Change name</div>
-        <div className='flex gap-5 items-center'>
-          <input placeholder='New name' className={s.formInput} type="text" />
-          <button className={s.borderButton} >Save</button>
+        <div className='flex flex-col sm:flex-row gap-5 items-center'>
+          <input 
+            value={newName} 
+            onChange={(e) => setNewName(e.target.value)} 
+            placeholder='New name' 
+            className={s.formInput} 
+            type="text" />
+          <button 
+            onClick={sendHandler}
+            className={s.borderButton} >Save</button>
         </div>
       </div>
   )

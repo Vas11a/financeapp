@@ -24,8 +24,8 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["./src/*"],
-      "@slices/*": ["store/slices/*"],
-      "@imgs/*": ["assets/imgs/*"],
+      "@slices/*": ["./store/slices/*"], 
+      "@imgs/*": ["./assets/imgs/*"],
     },
   },
   "include": [

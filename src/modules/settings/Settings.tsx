@@ -15,14 +15,28 @@ export default function Settings({ setIsLoading, setErrorText, setIsError }: Set
   const logout = () => {
     setSettingsForm(0)
   }
+
+  const changeUserName = (name: string) => {
+    console.log(name);
+  }
+
+  const deleteAccount = (password: string) => {
+    console.log(password);
+    
+  }
+
+  const contactUs = (mail: string, question: string) => {
+    console.log(mail, question)
+  }
+
   return (
     <div className='h-full'>
-      <ChangeName settingsForm={settingsForm} />
-      <DeleteAcc settingsForm={settingsForm} />
-      <Contacts settingsForm={settingsForm} />
+      <ChangeName changeUserName={changeUserName} settingsForm={settingsForm} />
+      <DeleteAcc deleteAccount={deleteAccount} settingsForm={settingsForm} />
+      <Contacts contactUs={contactUs} settingsForm={settingsForm} />
 
       
-      <div className='flex justify-center gap-10'>
+      <div className={s.buttonsBlock}>
         <button onClick={logout} className={s.button}>Log out</button>
         <button onClick={() => setSettingsForm(1)} className={s.button}>Change name</button>
         <button onClick={() => setSettingsForm(2)} className={s.buttonDelete}>Delete accaunt</button>

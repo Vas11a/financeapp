@@ -4,8 +4,8 @@ import axios from 'axios';
 import { mainUrl } from 'urls';
 import FormInput from 'components/FormInput';
 import FormBtn from 'components/FormBtn';
-import eyeVisib from '@/assets/imgs/eye-visib.svg'
-import eyeNo from '@/assets/imgs/eye-no-visib.svg'
+import eyeVisib from '@imgs/eye-visib.svg'
+import eyeNo from '@imgs/eye-no-visib.svg'
 import Spinner from 'components/Spinner';
 import { Link } from 'react-router-dom';
 import { isValidEmail } from 'helpers';

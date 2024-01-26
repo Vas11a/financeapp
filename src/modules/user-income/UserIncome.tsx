@@ -1,10 +1,10 @@
 import React from 'react'
 import s from './style.module.css'
-import Calendar from './parts/Calendar'
-import MyChart from './parts/MyChart'
+import MemoCalendar from './parts/Calendar'
+import MemoChart from './parts/MyChart'
 import Date from './parts/Date'
 import Chart from "chart.js/auto";
-import Switch from './parts/Switch'
+import MemoSwitch from './parts/Switch'
 import { CategoryScale } from "chart.js";
 import { useAppSelector } from 'hooks'
 Chart.register(CategoryScale);
@@ -16,19 +16,19 @@ type UserIncomeType = {
 }
 
 export default function UserIncome({ setIsLoading, setErrorText, setIsError }: UserIncomeType): JSX.Element {
+  
   const [activeDay, setActiveDay] = React.useState<number>(34)
-  const [isMonthly, setIsMonthly] = React.useState<boolean>(true)
-  const {calendar, globalTotal, weekTotal} = useAppSelector(state => state.userPage)
+  const {calendar, globalTotal, weekTotal, isMonthly} = useAppSelector(state => state.userPage)
 
   return (
     <div className='h-full'>
       <Date activeDay={calendar[activeDay]} activeIdx={activeDay} />
-      <div className='flex justify-between gap-20'>
-        <Calendar calendar={calendar} setActiveDay={setActiveDay} activeDay={activeDay} />
-        <MyChart calendar={calendar} globalTotal={globalTotal} weekTotal={weekTotal} isMonthly={isMonthly} />
+      <div className={s.calendarBlock}>
+        <MemoCalendar calendar={calendar} isMonthly={isMonthly} setActiveDay={setActiveDay} activeDay={activeDay} />
+        <MemoChart calendar={calendar} globalTotal={globalTotal} weekTotal={weekTotal} isMonthly={isMonthly} />
       </div>
       <div className={s.totalBlock}>
-        <Switch isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
+        <MemoSwitch isMonthly={isMonthly} />
         <div className='text-2xl font-bold'>
           Total: 
           <span 

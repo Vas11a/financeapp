@@ -11,8 +11,9 @@ type ChartTypes = {
 }
 
 const MyChart = ({ calendar, globalTotal, isMonthly, weekTotal }: ChartTypes) => {
-
+    
     React.useEffect(() => {
+
         let totalArr = calendar.map((elem) => elem.total)
         let newLabels = calendar.map((elem) => elem.date);
         setTitle('Month')
@@ -23,7 +24,7 @@ const MyChart = ({ calendar, globalTotal, isMonthly, weekTotal }: ChartTypes) =>
         }
         setLabels(newLabels)
         setDayTotal(totalArr)
-    }, [globalTotal, isMonthly])
+    }, [isMonthly, globalTotal] )
 
     const [dayTotal ,setDayTotal] = React.useState([0])
     const [labels ,setLabels] = React.useState([0])
@@ -48,9 +49,13 @@ const MyChart = ({ calendar, globalTotal, isMonthly, weekTotal }: ChartTypes) =>
 
     return (
         <div className="w-full flex-1" > 
-            <Line data={data} options={options} />
+            <Line height={300} data={data} options={options} />
         </div>
     );
 };
 
-export default MyChart;
+const MemoChart = React.memo(MyChart, (prevProps, nextProps) => {
+    return prevProps.isMonthly === nextProps.isMonthly && prevProps.globalTotal === nextProps.globalTotal;
+  });
+
+export default MemoChart;

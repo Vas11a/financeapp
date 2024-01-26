@@ -5,6 +5,7 @@
 
 *{
     font-family: 'Manrope', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 input{
@@ -73,9 +74,8 @@ body{
 .user-cont-white{
     height: auto;
     min-height: calc(100vh - 36px);
-    padding-bottom: 20px !important;
     padding-bottom: 70px !important;
-    @apply bg-white rounded-lg p-8 relative
+    @apply bg-white rounded-lg p-4 sm:p-8 relative
 }
 
 .user-modules-cont{
@@ -87,7 +87,7 @@ body{
 }
 
 .user-modules{
-    @apply overflow-hidden p-7 
+    @apply overflow-hidden py-3 sm:p-7
 }
 
 .user-error{
@@ -99,6 +99,9 @@ body{
     animation-duration: 1s;
 }
 
+@media screen and (max-width:640px){
+    .gh{left: calc(50% - 50px);}
+}
 
 /* //////////////////////////// */
 /* Uer page FINISH */
