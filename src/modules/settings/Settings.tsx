@@ -4,6 +4,7 @@ import ChangeName from './parts/ChangeName'
 import DeleteAcc from './parts/DeleteAcc'
 import Contacts from './parts/Contacts'
 
+
 type SettingsType = {
   setIsLoading: (value: boolean) => void
   setErrorText: (value: string) => void

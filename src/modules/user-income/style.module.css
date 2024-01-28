@@ -1,9 +1,8 @@
 /* main */
 
 .totalBlock{
-    @apply flex flex-col sm:flex-row gap-8 sm:gap-16 justify-between items-center pt-14
+    @apply flex flex-col md:flex-row gap-8 md:gap-16 justify-between items-center pt-14
 }
-
 
 /* main finish */
 

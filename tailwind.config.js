@@ -24,7 +24,11 @@ module.exports = {
       },
       borderWidth: {
         calendar: '0.5px',
+        three: '3px'
       },
+      height: {
+        sett: '46px'
+      }
     },
   },
   plugins: [],

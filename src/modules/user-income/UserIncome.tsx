@@ -5,6 +5,7 @@ import MemoChart from './parts/MyChart'
 import Date from './parts/Date'
 import Chart from "chart.js/auto";
 import MemoSwitch from './parts/Switch'
+import MemoSave from './parts/Save'
 import { CategoryScale } from "chart.js";
 import { useAppSelector } from 'hooks'
 Chart.register(CategoryScale);
@@ -29,6 +30,7 @@ export default function UserIncome({ setIsLoading, setErrorText, setIsError }: U
       </div>
       <div className={s.totalBlock}>
         <MemoSwitch isMonthly={isMonthly} />
+        <MemoSave isMonthly={isMonthly} />
         <div className='text-2xl font-bold'>
           Total: 
           <span 

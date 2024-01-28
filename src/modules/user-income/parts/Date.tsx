@@ -3,7 +3,7 @@ import s from '../style.module.css'
 import arrow from '@imgs/arrow.png'
 import cross from '@imgs/cross.png'
 import add from '@imgs/add.png'
-import { CalendarItem } from '../calendartypes'
+import { CalendarItem } from "types";
 import { changeIsIncomeR, 
          changeDescriptionR, 
          changePriceR,

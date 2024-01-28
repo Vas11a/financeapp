@@ -1,6 +1,6 @@
 import React from 'react';
 import s from '../style.module.css';
-import { CalendarItem } from 'modules/user-income/calendartypes';
+import { CalendarItem } from "types";
 
 interface CalendarType {
   calendar: CalendarItem[];

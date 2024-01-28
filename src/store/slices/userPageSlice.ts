@@ -1,18 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-
-interface Message {
-  isIncome: boolean;
-  description: string;
-  price: number;
-}
-
-interface CalendarItem {
-  date: number;
-  fullData: string;
-  total: number;
-  messages: Message[];
-}
+import { CalendarItem } from "types";
 
 
 

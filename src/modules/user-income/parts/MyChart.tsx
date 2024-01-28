@@ -1,6 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { CalendarItem } from "../calendartypes";
+import { CalendarItem } from "types";
 
 
 type ChartTypes = {

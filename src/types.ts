@@ -10,3 +10,10 @@ export interface CalendarItem {
     total: number;
     messages: Message[];
 }
+
+
+export type HistoryElemType = {
+    type: string
+    date: string,
+    total: number,
+}

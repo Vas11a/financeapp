@@ -1,5 +1,6 @@
 import React from 'react'
 import s from '../style.module.css'
+import Button from 'components/Button'
 
 type ContactsType = {
     settingsForm: number;
@@ -34,9 +35,10 @@ export default function Contacts({settingsForm, contactUs} : ContactsType): JSX.
                         onChange={(e) => setQuestion(e.target.value)}
                         type="text" />
                 </div>
-                <button
-                    onClick={contactHandler} 
-                    className={s.borderButton + ' w-full'}>Send question</button>
+                <Button 
+                    text='Send question' 
+                    fc={contactHandler} 
+                    extraClasses=' w-full h-sett flex items-center rounded-xl justify-center'   />
             </div>
         </div>
     )

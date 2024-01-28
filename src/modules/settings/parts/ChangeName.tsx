@@ -1,5 +1,6 @@
 import React from 'react'
 import s from '../style.module.css'
+import Button from 'components/Button'
 
 type ChangeNameType = {
     settingsForm: number;
@@ -24,9 +25,7 @@ export default function ChangeName({settingsForm, changeUserName}: ChangeNameTyp
             placeholder='New name' 
             className={s.formInput} 
             type="text" />
-          <button 
-            onClick={sendHandler}
-            className={s.borderButton} >Save</button>
+          <Button text='Save' fc={sendHandler} extraClasses=' h-sett flex items-center rounded-xl'   />
         </div>
       </div>
   )

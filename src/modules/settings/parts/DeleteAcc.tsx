@@ -1,5 +1,6 @@
 import React from 'react'
 import s from '../style.module.css'
+import Button from 'components/Button'
 
 type DeleteAccType = {
     settingsForm: number
@@ -24,9 +25,10 @@ export default function DeleteAcc({settingsForm, deleteAccount}: DeleteAccType):
                     value={password}
                     onChange={(e) => setPassword(e.target.value)} 
                     type="text" />
-                <button
-                    onClick={sendHandler} 
-                    className={s.borderButtonAlert} >Confirm</button>
+                <Button 
+                    text='Confirm' 
+                    fc={sendHandler} 
+                    extraClasses=' h-sett flex items-center rounded-xl border-red-500 hover:bg-red-200'   />
             </div>
         </div>
     )
