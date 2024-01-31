@@ -19,6 +19,10 @@
     @apply duration-500 flex flex-col items-center overflow-hidden
 }
 
+.imgEye{
+    @apply absolute right-2 cursor-pointer h-5 w-auto
+}
+
 .formInput{
     @apply p-2 border-black rounded-xl text-lg select-none
 }

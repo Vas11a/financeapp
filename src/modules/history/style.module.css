@@ -11,5 +11,5 @@
 }
 
 .historyBlock{
-    @apply flex items-center gap-10 pb-2 
+    @apply flex items-center gap-3 sm:gap-10 pb-2 flex-wrap
 }

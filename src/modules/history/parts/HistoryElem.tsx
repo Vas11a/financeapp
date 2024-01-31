@@ -12,7 +12,7 @@ type HistoryElementType = {
 export default function HistoryElem({elem , idx, removeOneHistoryElem}: HistoryElementType):JSX.Element {
     
     return (
-        <div onClick={() => removeOneHistoryElem(idx)} className={s.historyBlock}>
+        <div className={s.historyBlock}>
             <div className='text-2xl font-bold'>{elem.type}</div>
             <div className={s.date}>({elem.date})</div>
             <div
@@ -22,6 +22,7 @@ export default function HistoryElem({elem , idx, removeOneHistoryElem}: HistoryE
             <img
                 className='w-6 h-auto cursor-pointer'
                 src={trashbox}
+                onClick={() => removeOneHistoryElem(idx)}
                 alt="Remove" />
         </div>
     )
