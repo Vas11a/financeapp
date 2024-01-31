@@ -1,18 +1,40 @@
 import React from 'react'
 import s from '../style.module.css'
 import Button from 'components/Button'
+import { useAppSelector } from 'hooks'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { mainUrl } from 'urls'
 
 type DeleteAccType = {
     settingsForm: number
-    deleteAccount: (password: string) => void
+    setIsLoading: (value: boolean) => void
+    setErrorText: (value: string) => void
+    setIsError: (value: boolean) => void
 }
 
-export default function DeleteAcc({settingsForm, deleteAccount}: DeleteAccType): JSX.Element {
+export default function DeleteAcc({setIsLoading, setErrorText, setIsError, settingsForm}: DeleteAccType): JSX.Element {
 
-    const [password, setPassword] = React.useState<string>('')
-    const sendHandler = () => {
-        deleteAccount(password)
-        setPassword('')
+    const [passwordLocal, setPasswordL] = React.useState<string>('')
+    const navigate = useNavigate()
+    const {password, userId} = useAppSelector(state => state.profile)
+    const sendHandler = async () => {
+        setIsError(false)
+        if (password !== passwordLocal) {
+            setErrorText('Incorrect password')
+            setIsError(true)
+            return
+        }
+        setIsLoading(true)
+        try {
+            await axios.post(`${mainUrl}deleteAccount`, { userId: userId })
+            setIsLoading(false)
+            navigate('/')
+        } catch (error) {
+            setIsLoading(false)
+            setErrorText('Server error')
+            setIsError(false)
+        }
     }
 
     return (
@@ -22,8 +44,8 @@ export default function DeleteAcc({settingsForm, deleteAccount}: DeleteAccType):
                 <input 
                     placeholder='Enter password' 
                     className={s.formInput}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} 
+                    value={passwordLocal}
+                    onChange={(e) => setPasswordL(e.target.value)} 
                     type="text" />
                 <Button 
                     text='Confirm' 

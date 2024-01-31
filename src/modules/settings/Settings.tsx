@@ -3,6 +3,7 @@ import s from './style.module.css'
 import ChangeName from './parts/ChangeName'
 import DeleteAcc from './parts/DeleteAcc'
 import Contacts from './parts/Contacts'
+import { useNavigate } from 'react-router-dom'
 
 
 type SettingsType = {
@@ -13,28 +14,18 @@ type SettingsType = {
 
 export default function Settings({ setIsLoading, setErrorText, setIsError }: SettingsType): JSX.Element {
   const [settingsForm, setSettingsForm] = React.useState(0)
+  const navigate = useNavigate()
   const logout = () => {
-    setSettingsForm(0)
+    localStorage.removeItem('token')
+    navigate('/')
   }
 
-  const changeUserName = (name: string) => {
-    console.log(name);
-  }
-
-  const deleteAccount = (password: string) => {
-    console.log(password);
-    
-  }
-
-  const contactUs = (mail: string, question: string) => {
-    console.log(mail, question)
-  }
 
   return (
     <div className='h-full'>
-      <ChangeName changeUserName={changeUserName} settingsForm={settingsForm} />
-      <DeleteAcc deleteAccount={deleteAccount} settingsForm={settingsForm} />
-      <Contacts contactUs={contactUs} settingsForm={settingsForm} />
+      <ChangeName setIsLoading={setIsLoading} setErrorText={setErrorText} setIsError={setIsError} settingsForm={settingsForm} />
+      <DeleteAcc setIsLoading={setIsLoading} setErrorText={setErrorText} setIsError={setIsError} settingsForm={settingsForm} />
+      <Contacts setIsLoading={setIsLoading} setErrorText={setErrorText} setIsError={setIsError} settingsForm={settingsForm} />
 
       
       <div className={s.buttonsBlock}>

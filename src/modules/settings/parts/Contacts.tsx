@@ -1,20 +1,34 @@
 import React from 'react'
 import s from '../style.module.css'
 import Button from 'components/Button'
+import { mainUrl } from 'urls'
+import axios from 'axios'
 
 type ContactsType = {
     settingsForm: number;
-    contactUs: (mail: string, question: string) => void
+    setIsLoading: (value: boolean) => void
+    setErrorText: (value: string) => void
+    setIsError: (value: boolean) => void
 }
 
-export default function Contacts({settingsForm, contactUs} : ContactsType): JSX.Element {
+export default function Contacts({setIsLoading, setErrorText, setIsError, settingsForm} : ContactsType): JSX.Element {
 
     const [mail, setMail] = React.useState<string>('')
     const [question, setQuestion] = React.useState<string>('')
-    const contactHandler = () => {
-        contactUs(mail, question)
-        setMail('')
-        setQuestion('')
+    const contactHandler = async () => {
+        setIsLoading(true)
+        setIsError(false)
+        try {
+            await axios.post(`${mainUrl}contact`, { email: mail, question: question })
+            setIsLoading(false)
+            setMail('')
+            setQuestion('')
+        } catch (error) {
+            setErrorText('Server error')
+            setIsError(true)
+            setIsLoading(false)
+        }
+        
     }
 
     return (

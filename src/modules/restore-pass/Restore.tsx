@@ -39,7 +39,6 @@ function Restore({ setUserCode }: RestoreModuleType): JSX.Element {
         setIsError(false)
         try {
             const res = await axios.post(`${mainUrl}changePassword`, { email: emailLocal, password: passwordLocal });
-            console.log(res.data)
             setUserCode(res.data)
             setIsLoading(false)
         } catch (error: any) {

@@ -39,7 +39,6 @@ function RegistrationModule({ setUserCode }: RegistrationModuleType): JSX.Elemen
                 setIsError(true);
                 setIsLoading(false)
             } else if(res.status === 200) {
-                console.log(res.data)
                 setUserCode(res.data)
                 setIsLoading(false)
             }

@@ -34,7 +34,7 @@ export default function History({ setIsLoading, setErrorText, setIsError }: Hist
     <div className={s.main}>
       {
         historyList.map((elem, idx) => (
-          <div className={s.historyBlock}>
+          <div key={idx} className={s.historyBlock}>
             <div className='text-2xl font-bold'>{elem.type}</div>
             <div className={s.date}>({elem.date})</div>
             <div 

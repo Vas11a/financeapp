@@ -12,14 +12,14 @@ export default function UserPage(): JSX.Element {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isError, setIsError] = React.useState<boolean>(false);
   const [errorText, setErrorText] = React.useState<string>('Server error');
-  // const  {username, email, password, userId} = useAppSelector(state => state.profile);
-  // const navigate = useNavigate();
+  const  {username, email, password, userId} = useAppSelector(state => state.profile);
+  const navigate = useNavigate();
 
-  // React.useEffect(()=> {
-  //     if (userId === 0) {
-  //         navigate('/')
-  //     }
-  // }, [])
+  React.useEffect(()=> {
+      if (userId === '') {
+          navigate('/')
+      }
+  }, [])
 
   const [selectedModule, setSelectedModule] = React.useState<number>(1);
   const changeModule = (value: number) => {
@@ -35,7 +35,7 @@ export default function UserPage(): JSX.Element {
           <div className="flex justify-between items-center">
             <div className="flex gap-2">
               <span className="text-4xl">Hello</span>
-              <span className="user-name">Vasyl</span>
+              <span className="user-name">{username}</span>
             </div>
             {isLoading && <Spinner />}
           </div>

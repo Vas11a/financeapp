@@ -11,6 +11,7 @@ import { changeIsIncomeR,
          removeMessageR,
          saveR } from '@slices/userPageSlice'
 import { useAppDispatch } from 'hooks'
+
 type DateType = {
     activeDay: CalendarItem;
     activeIdx: number;
@@ -18,7 +19,6 @@ type DateType = {
 
 export default function Date({ activeDay, activeIdx }: DateType): JSX.Element {
     const dispatch = useAppDispatch()
-
     const changeDescription = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
         dispatch(changeDescriptionR([activeIdx, idx, e.target.value]))
     }

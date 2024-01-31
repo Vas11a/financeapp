@@ -1,18 +1,38 @@
 import React from 'react'
 import s from '../style.module.css'
 import Button from 'components/Button'
+import { useAppSelector, useAppDispatch } from 'hooks'
+import { setUserName } from '@slices/profileSlice'
+import axios from 'axios'
+import { mainUrl } from 'urls'
 
 type ChangeNameType = {
     settingsForm: number;
-    changeUserName: (name: string) => void
+    setIsLoading: (value: boolean) => void
+    setErrorText: (value: string) => void
+    setIsError: (value: boolean) => void
 }
 
-export default function ChangeName({settingsForm, changeUserName}: ChangeNameType ):JSX.Element {
+export default function ChangeName({ setIsLoading, setErrorText, setIsError ,settingsForm}: ChangeNameType ):JSX.Element {
 
   const [newName, setNewName] = React.useState<string>('')
-  const sendHandler = () => {
-    changeUserName(newName)
-    setNewName('')
+  const dispatch = useAppDispatch()
+  const { userId } = useAppSelector(state => state.profile)
+  const sendHandler = async () => {
+    setIsLoading(true)
+    setIsError(false)
+    try {
+      await axios.post(`${mainUrl}changeName`, { userId: userId, name: newName })
+      dispatch(setUserName(newName))
+      setIsLoading(false)
+      setNewName('')
+    } catch (error) {
+      console.log(error);
+      setErrorText('Server error')
+      setIsError(true)
+      setIsLoading(false)
+    }
+    
   }
 
   return (
@@ -25,7 +45,7 @@ export default function ChangeName({settingsForm, changeUserName}: ChangeNameTyp
             placeholder='New name' 
             className={s.formInput} 
             type="text" />
-          <Button text='Save' fc={sendHandler} extraClasses=' h-sett flex items-center rounded-xl'   />
+          <Button text='Save' fc={sendHandler} extraClasses=' h-sett flex items-center rounded-xl w-full justify-center'   />
         </div>
       </div>
   )

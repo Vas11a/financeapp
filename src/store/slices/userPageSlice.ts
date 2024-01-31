@@ -4,10 +4,11 @@ import { CalendarItem } from "types";
 
 
 
-const initialState: { calendar: CalendarItem[], globalTotal: number, weekTotal: number,isMonthly:boolean } = {
+const initialState: { calendar: CalendarItem[], globalTotal: number, weekTotal: number,isMonthly:boolean, indicate:boolean } = {
   globalTotal: 0,
   weekTotal: 0,
   isMonthly: true,
+  indicate: false,
   calendar: [
     { date: 22, fullData: '22.12.2023', total: 0, messages: [] },
     { date: 23, fullData: '23.12.2023', total: 0, messages: [] },
@@ -54,6 +55,11 @@ export const userPageSlice = createSlice({
     setCalendar(state, actions: PayloadAction<CalendarItem[]>) {
       state.calendar = actions.payload
     },
+    setOtherState(state, actions: PayloadAction<[globalTotal: number, weekTotal: number, isMonthly: boolean]>) {
+      state.globalTotal = actions.payload[0]
+      state.weekTotal = actions.payload[1]
+      state.isMonthly = actions.payload[2]
+    },
     changeIsIncomeR(state, action: PayloadAction<[act: number, i: number]>) {
       const [activeIdx, idx] = action.payload;
       state.calendar[activeIdx].messages[idx].isIncome = !state.calendar[activeIdx].messages[idx].isIncome;
@@ -72,8 +78,10 @@ export const userPageSlice = createSlice({
     removeMessageR(state, action:PayloadAction<[activeIdx: number, idx: number]>) {
       const [activeIdx, idx] = action.payload
       state.calendar[activeIdx].messages.splice(idx, 1)
+
     },
     saveR(state, action:PayloadAction<number>) {
+      state.indicate = true
       state.globalTotal = 0
       state.weekTotal = 0
       const activeIdx = action.payload
@@ -94,7 +102,7 @@ export const userPageSlice = createSlice({
     },
     setIsMonthly(state) {
       state.isMonthly = !state.isMonthly
-    }
+    },
 
   },
 })
@@ -108,6 +116,7 @@ export const {
   addOneMessageR,
   removeMessageR,
   saveR,
-  setIsMonthly} = userPageSlice.actions
+  setIsMonthly,
+  setOtherState} = userPageSlice.actions
 
 export default userPageSlice.reducer

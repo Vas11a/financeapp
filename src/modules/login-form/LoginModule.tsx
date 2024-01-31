@@ -8,6 +8,7 @@ import eyeVisib from '@imgs/eye-visib.svg';
 import eyeNo from '@imgs/eye-no-visib.svg';
 import Spinner from 'components/Spinner';
 import { setUserData } from '@slices/profileSlice';
+import { setCalendar, setOtherState } from '@slices/userPageSlice';
 import { useAppDispatch } from 'hooks';
 import { useNavigate, Link } from 'react-router-dom';
 import { isValidEmail } from 'helpers';
@@ -25,6 +26,32 @@ function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
 
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        if (localStorage.getItem('token')) {
+            getAutorUser()
+        }
+    }, [])
+
+    const getAutorUser = async () => {
+        setIsLoading(true)
+        setIsError(false)
+        try {
+            const res = await axios.post(`${mainUrl}getAutorUser`, { token: localStorage.getItem('token') });
+            dispatch(setUserData({
+                email: res.data.email,
+                username: res.data.username,
+                userId: res.data._id,
+                password: res.data.password
+            }))
+            dispatch(setCalendar(res.data.calendar))
+            dispatch(setOtherState([res.data.globalTotal, res.data.weekTotal, res.data.isMonthly]))
+            navigate('/user-pannel')
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false)
+        }
+    }
+
     const login = async () => {
         if (isValidEmail(emailLocal) === false) {
             setErrorText('Invalid email');
@@ -35,8 +62,15 @@ function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
         setIsError(false)
         try {
             const res = await axios.post(`${mainUrl}login`, { email: emailLocal, password: passwordLocal });
-            dispatch(setUserData(res.data))
-            console.log(res.data)
+            dispatch(setUserData({
+                email: res.data.email,
+                username: res.data.username,
+                userId: res.data._id,
+                password: res.data.password
+            }))
+            dispatch(setCalendar(res.data.calendar))
+            dispatch(setOtherState([res.data.globalTotal, res.data.weekTotal, res.data.isMonthly]))
+            localStorage.setItem('token', res.data._id);
             navigate('/user-pannel')
             setEmailLocal('');
             setPasswordLocal('');
