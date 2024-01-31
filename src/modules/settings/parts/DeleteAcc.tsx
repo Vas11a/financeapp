@@ -29,6 +29,7 @@ export default function DeleteAcc({setIsLoading, setErrorText, setIsError, setti
         try {
             await axios.post(`${mainUrl}deleteAccount`, { userId: userId })
             setIsLoading(false)
+            localStorage.removeItem('token')
             navigate('/')
         } catch (error) {
             setIsLoading(false)

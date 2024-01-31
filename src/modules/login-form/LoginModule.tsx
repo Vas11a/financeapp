@@ -7,6 +7,7 @@ import FormBtn from 'components/FormBtn';
 import eyeVisib from '@imgs/eye-visib.svg';
 import eyeNo from '@imgs/eye-no-visib.svg';
 import Spinner from 'components/Spinner';
+import { setHistory } from '@slices/userHistorySlice';
 import { setUserData } from '@slices/profileSlice';
 import { setCalendar, setOtherState } from '@slices/userPageSlice';
 import { useAppDispatch } from 'hooks';
@@ -28,6 +29,7 @@ function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
 
     React.useEffect(() => {
         if (localStorage.getItem('token')) {
+            
             getAutorUser()
         }
     }, [])
@@ -45,6 +47,8 @@ function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
             }))
             dispatch(setCalendar(res.data.calendar))
             dispatch(setOtherState([res.data.globalTotal, res.data.weekTotal, res.data.isMonthly]))
+            
+            dispatch(setHistory(res.data.userHistory))
             navigate('/user-pannel')
             setIsLoading(false);
         } catch (error) {
@@ -70,6 +74,7 @@ function LoginModule({ isLoginPage }: { isLoginPage?: boolean }): JSX.Element {
             }))
             dispatch(setCalendar(res.data.calendar))
             dispatch(setOtherState([res.data.globalTotal, res.data.weekTotal, res.data.isMonthly]))
+            dispatch(setHistory(res.data.userHistory))
             localStorage.setItem('token', res.data._id);
             navigate('/user-pannel')
             setEmailLocal('');

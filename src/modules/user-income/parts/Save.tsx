@@ -1,13 +1,17 @@
 import React from 'react'
 import Button from 'components/Button';
+import { CalendarItem } from 'types';
 
 type SaveType = {
     isMonthly: boolean
+    addToHistory: () => void
 }
 
-function Save({isMonthly}: SaveType) {
+function Save({isMonthly, addToHistory}: SaveType) {
+
+
   return (
-    <Button text={`Save current ${isMonthly ? 'month' : 'week'}`} />
+    <Button fc={addToHistory} text={`Save current ${isMonthly ? 'month' : 'week'}`} />
   )
 }
 

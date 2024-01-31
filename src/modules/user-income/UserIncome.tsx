@@ -7,8 +7,10 @@ import Chart from "chart.js/auto";
 import MemoSwitch from './parts/Switch'
 import MemoSave from './parts/Save'
 import { CategoryScale } from "chart.js";
-import { useAppSelector } from 'hooks'
+import { useAppSelector, useAppDispatch } from 'hooks'
+import { addHistory } from '@slices/userHistorySlice'
 import axios from 'axios'
+import { setHistoryObj } from './helpers'
 import { mainUrl } from 'urls'
 Chart.register(CategoryScale);
 
@@ -20,7 +22,7 @@ type UserIncomeType = {
 
 export default function UserIncome({ setIsLoading, setErrorText, setIsError }: UserIncomeType): JSX.Element {
   
-
+  const dispatch = useAppDispatch()
   const [activeDay, setActiveDay] = React.useState<number>(34)
   const {calendar, globalTotal, weekTotal, isMonthly, indicate} = useAppSelector(state => state.userPage)
   const {userId} = useAppSelector(state => state.profile)
@@ -46,7 +48,20 @@ export default function UserIncome({ setIsLoading, setErrorText, setIsError }: U
     }  
   }
 
-
+  const addToHistory = async () => {
+    const res = setHistoryObj(globalTotal, weekTotal, isMonthly, `${calendar[0].fullData} - ${calendar[calendar.length - 1].fullData}`, `${calendar[28].fullData} - ${calendar[calendar.length - 1].fullData}`)
+    setIsLoading(true)
+    setIsError(false)
+    try {
+      await axios.post(`${mainUrl}addToHistory`, { data: res, userId: userId })
+      dispatch(addHistory(res))
+      setIsLoading(false)
+    } catch (error) {
+      setIsLoading(false)
+      setErrorText('Server error')
+      setIsError(true)
+    }
+  } 
 
   return (
     <div className='h-full'>
@@ -60,7 +75,7 @@ export default function UserIncome({ setIsLoading, setErrorText, setIsError }: U
       </div>
       <div className={s.totalBlock}>
         <MemoSwitch isMonthly={isMonthly} />
-        <MemoSave isMonthly={isMonthly} />
+        <MemoSave isMonthly={isMonthly} addToHistory={addToHistory}  />
         <div className='text-2xl font-bold'>
           Total: 
           <span 
