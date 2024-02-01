@@ -103,6 +103,9 @@ export const userPageSlice = createSlice({
     setIsMonthly(state) {
       state.isMonthly = !state.isMonthly
     },
+    setIndicator(state) {
+      state.indicate = false
+    }
 
   },
 })
@@ -117,6 +120,7 @@ export const {
   removeMessageR,
   saveR,
   setIsMonthly,
-  setOtherState} = userPageSlice.actions
+  setOtherState,
+  setIndicator} = userPageSlice.actions
 
 export default userPageSlice.reducer

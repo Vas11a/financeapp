@@ -19,6 +19,22 @@ type DateType = {
 
 export default function Date({ activeDay, activeIdx }: DateType): JSX.Element {
     const dispatch = useAppDispatch()
+    const [oldData, setOldData] = React.useState<string>(JSON.stringify(activeDay.messages))
+    const [equal , setEqual] = React.useState<boolean>(true)
+    
+    React.useEffect(() => {
+        setOldData(JSON.stringify(activeDay.messages))
+        if (oldData === JSON.stringify(activeDay.messages)) {
+            setEqual(true)
+        } else {
+            setEqual(false)
+        }
+    }, [activeDay])
+    React.useEffect(() => {
+        setOldData(JSON.stringify(activeDay.messages))
+        setEqual(true)
+    }, [activeIdx])
+
     const changeDescription = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
         dispatch(changeDescriptionR([activeIdx, idx, e.target.value]))
     }
@@ -93,7 +109,7 @@ export default function Date({ activeDay, activeIdx }: DateType): JSX.Element {
                     <img src={add} alt="Add" />
                 </div>
                 <div>
-                    <button onClick={save} className={`${s.btn} border-green-500 text-green-500`}>Save</button>
+                    <button onClick={save} className={`${s.btn} ${equal ? 'bg-green-400 text-white': ''} border-green-500 text-green-500`}>Save</button>
                 </div>
             </div>
         </div>
